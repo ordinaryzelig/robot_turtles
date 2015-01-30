@@ -1,3 +1,6 @@
+require 'bundler/setup'
+Bundler.require
+
 module StopsLaser
 end
 
@@ -75,11 +78,6 @@ class Board < SimpleDelegator
     super matrix
   end
 
-end
-
-board = Board.new
-board.each do |space|
-  puts space
 end
 
 # Scenario
