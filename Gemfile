@@ -4,4 +4,5 @@ gem 'rake'
 
 group :test do
   gem 'minitest', require: 'minitest/autorun'
+  gem 'awesome_print'
 end
