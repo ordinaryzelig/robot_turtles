@@ -20,4 +20,11 @@ describe Turtle do
     turtle.coords.must_equal [0, 1]
   end
 
+  it 'can be forced to face a direction' do
+    turtle.faces?(turtle.facing).must_equal true
+
+    turtle.face(:south)
+    turtle.faces?(:south).must_equal true
+  end
+
 end

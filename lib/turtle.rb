@@ -10,7 +10,8 @@ class Turtle
 
   include StopsLaser
 
-  attr_reader   :color
+  attr_reader :color
+  attr_reader :facing
 
   def initialize(color, facing)
     @color  = color
@@ -23,6 +24,10 @@ class Turtle
 
   def can_move_forward?
     space_ahead.free? || thing_directly_ahead.is_a?(Crate) && thing_directly_ahead.can_move?(direction_facing)
+  end
+
+  def face(direction)
+    @facing = direction
   end
 
   def faces?(direction)
