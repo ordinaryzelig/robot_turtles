@@ -34,6 +34,28 @@ class Turtle
     @facing == direction
   end
 
+  def turn_right
+    new_dir =
+      case @facing
+      when :north then :east
+      when :east  then :south
+      when :south then :west
+      when :west  then :north
+      end
+    face new_dir
+  end
+
+  def turn_left
+    new_dir =
+      case @facing
+      when :north then :west
+      when :east  then :north
+      when :south then :east
+      when :west  then :south
+      end
+    face new_dir
+  end
+
 private
 
   def space_ahead

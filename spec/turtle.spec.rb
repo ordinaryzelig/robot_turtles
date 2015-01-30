@@ -27,4 +27,17 @@ describe Turtle do
     turtle.faces?(:south).must_equal true
   end
 
+  it 'can turn' do
+    turtle.face(:north)
+    %i[east south west north].each do |expected_dir|
+      turtle.turn_right
+      turtle.faces?(expected_dir).must_equal true
+    end
+
+    %i[west south east north].each do |expected_dir|
+      turtle.turn_left
+      turtle.faces?(expected_dir).must_equal true
+    end
+  end
+
 end
