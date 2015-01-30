@@ -12,7 +12,7 @@ class Turtle
   end
   #   moves forward
   def can_move_forward?
-    space_ahead.free? || thing_directly_ahead.is_a? Crate && thing_directly_ahead.can_move?(direction_facing)
+    space_ahead.free? || thing_directly_ahead.is_a?(Crate) && thing_directly_ahead.can_move?(direction_facing)
   end
   #   turns left
   #   turns right
@@ -49,9 +49,38 @@ class Jewel
 
 end
 
-# Board
-#   matrix
-#   spaces can contain things
+class Space
+
+  attr_accessor :row
+  attr_accessor :col
+
+  def free?
+    content.nil? || content.is_a?(IceWall) && content.melted?
+  end
+
+end
+
+require 'matrix'
+require 'delegate'
+
+class Board < SimpleDelegator
+
+  def initialize
+    matrix = Matrix.build(8, 8) do |row, col|
+      space = Space.new
+      space.row = row
+      space.col = col
+      space
+    end
+    super matrix
+  end
+
+end
+
+board = Board.new
+board.each do |space|
+  puts space
+end
 
 # Scenario
 #   setup instructions
