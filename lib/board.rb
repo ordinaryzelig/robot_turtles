@@ -7,4 +7,8 @@ class Board < SimpleDelegator
     super matrix
   end
 
+  def place(tile, row, col)
+    element(row, col).content = tile
+  end
+
 end
