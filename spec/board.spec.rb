@@ -20,4 +20,9 @@ describe Board do
     tile.coords.must_equal [0, 0]
   end
 
+  it 'returns a Space::OffBoard for an invalid coord' do
+    space = board.space_at -1, -1
+    space.must_be :off_board?
+  end
+
 end

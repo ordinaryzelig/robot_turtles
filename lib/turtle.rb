@@ -19,6 +19,9 @@ class Turtle
   end
 
   def move_forward
+    if space_ahead.off_board?
+      raise TriedToMoveOffBoard.new(coords, @facing)
+    end
     space_ahead.content = self
   end
 
@@ -60,6 +63,15 @@ private
 
   def space_ahead
     space.space_to_the(@facing)
+  end
+
+  class IllegalMovement < StandardError
+  end
+
+  class TriedToMoveOffBoard < IllegalMovement
+    def initialize(current_coords, attempted_direction)
+      super "Turtle at #{current_coords.inspect} tried to move #{attempted_direction.inspect}, which is off the board"
+    end
   end
 
 end

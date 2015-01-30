@@ -40,4 +40,12 @@ describe Turtle do
     end
   end
 
+  it 'cannot move off the board' do
+    Board.new.place turtle, 0, 0
+    turtle.face :north
+    proc do
+      turtle.move_forward
+    end.must_raise Turtle::TriedToMoveOffBoard
+  end
+
 end

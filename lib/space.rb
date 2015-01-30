@@ -45,4 +45,16 @@ class Space
     @board.space_at(new_row, new_col)
   end
 
+  def off_board?
+    false
+  end
+
+  class OffBoard < Space
+
+    def off_board?
+      true
+    end
+
+  end
+
 end

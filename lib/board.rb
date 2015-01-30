@@ -12,11 +12,23 @@ class Board < SimpleDelegator
   end
 
   def space_at(row, col)
-    element(row, col)
+    if off_board_coords? row, col
+      Space::OffBoard.new(row, col)
+    else
+      element(row, col)
+    end
   end
 
   def place(tile, row, col)
     space_at(row, col).content = tile
+  end
+
+private
+
+  def off_board_coords?(row, col)
+    [row, col].any? do |coord|
+      coord < 0 || coord > 7
+    end
   end
 
 end
