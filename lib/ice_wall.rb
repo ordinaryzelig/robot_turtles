@@ -1,5 +1,6 @@
 class IceWall
 
+  include Tile
   include StopsLaser
 
   attr_reader :melted

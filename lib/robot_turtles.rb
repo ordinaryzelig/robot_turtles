@@ -6,6 +6,7 @@ autoload :IceWall,   'ice_wall'
 autoload :Space,     'space'
 autoload :StoneWall, 'stone_wall'
 autoload :Turtle,    'turtle'
+autoload :Tile,      'tile'
 
 module StopsLaser
 end
