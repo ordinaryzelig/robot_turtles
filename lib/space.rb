@@ -3,6 +3,7 @@ class Space
   attr_reader :row
   attr_reader :col
   attr_reader :content
+  attr_writer :board
 
   def initialize(row, col)
     @row = row
@@ -20,6 +21,28 @@ class Space
 
   def coords
     [row, col]
+  end
+
+  def space_to_the(dir)
+    new_row =
+      case dir
+      when :north
+        row - 1
+      when :south
+        row + 1
+      else
+        row
+      end
+    new_col =
+      case dir
+      when :east
+        col + 1
+      when :west
+        col - 1
+      else
+        col
+      end
+    @board.space_at(new_row, new_col)
   end
 
 end
