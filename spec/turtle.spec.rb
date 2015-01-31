@@ -42,10 +42,12 @@ describe Turtle do
       board.place turtle, 0, 0
     end
 
-    it 'can move forward' do
+    it 'can move forward, leaving the previous space' do
+      old_space = turtle.space
       turtle.face :east
       turtle.move_forward
       turtle.coords.must_equal [0, 1]
+      old_space.content.must_be_empty
     end
 
     it 'cannot move off the board' do
@@ -79,6 +81,14 @@ describe Turtle do
       wall = IceWall.new
       place_east_of_turtle wall
       assert_turtle_bumps_into wall
+    end
+
+    it 'can move onto a space with a jewel' do
+      turtle.face :east
+      jewel = Jewel.new
+      place_east_of_turtle jewel
+      turtle.move_forward
+      turtle.must_be :on_jewel?
     end
 
   end

@@ -20,7 +20,7 @@ class Board < SimpleDelegator
   end
 
   def place(tile, row, col)
-    space_at(row, col).content = tile
+    space_at(row, col).add tile
   end
 
 private

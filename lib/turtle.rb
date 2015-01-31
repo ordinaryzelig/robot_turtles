@@ -22,9 +22,11 @@ class Turtle
     if about_to_move_off_board?
       raise TriedToMoveOffBoard.new(coords, @facing)
     elsif about_to_bump_into_stone_wall? || about_to_bump_into_ice_wall?
-      raise BumpedIntoObject.new(space_ahead.content)
+      raise BumpedIntoObject.new(space_ahead.find(Wall))
     end
-    space_ahead.content = self
+    next_space     = space_ahead
+    space.remove   self
+    next_space.add self
   end
 
   def face(direction)
@@ -57,6 +59,10 @@ class Turtle
     face new_dir
   end
 
+  def on_jewel?
+    space.contains?(Jewel)
+  end
+
 private
 
   def space_ahead
@@ -85,11 +91,11 @@ private
   end
 
   def about_to_bump_into_stone_wall?
-    space_ahead.content.is_a?(StoneWall)
+    space_ahead.contains?(StoneWall)
   end
 
   def about_to_bump_into_ice_wall?
-    space_ahead.content.is_a?(IceWall) && !space_ahead.content.melted
+    ice_wall = space_ahead.find(IceWall) and !ice_wall.melted
   end
 
 end

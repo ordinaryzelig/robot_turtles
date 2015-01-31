@@ -6,17 +6,33 @@ class Space
   attr_writer :board
 
   def initialize(row, col)
-    @row = row
-    @col = col
+    @row     = row
+    @col     = col
+    @content = []
   end
 
   def free?
-    content.nil? || content.is_a?(IceWall) && content.melted
+    content.empty? || has_melted_ice_wall?
   end
 
-  def content=(thing)
-    @content = thing
+  def add(thing)
+    @content << thing
     thing.space = self
+  end
+
+  def remove(thing)
+    @content.delete thing
+    thing.space = nil
+  end
+
+  def contains?(type)
+    !!find(type)
+  end
+
+  def find(type)
+    content.find do |obj|
+      obj.is_a? type
+    end
   end
 
   def coords
@@ -47,6 +63,12 @@ class Space
 
   def off_board?
     false
+  end
+
+private
+
+  def has_melted_ice_wall?
+    ice_wall = find(IceWall) and ice_wall.melted
   end
 
   class OffBoard < Space

@@ -1,6 +1,6 @@
 class StoneWall
 
+  include Wall
   include StopsLaser
-  include Tile
 
 end
