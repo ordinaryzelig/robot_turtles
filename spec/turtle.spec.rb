@@ -14,12 +14,6 @@ describe Turtle do
     turtle.faces?(:north).must_equal true
   end
 
-  it 'can move forward' do
-    Board.new.place turtle, 1, 1
-    turtle.move_forward
-    turtle.coords.must_equal [0, 1]
-  end
-
   it 'can be forced to face a direction' do
     turtle.faces?(turtle.facing).must_equal true
 
@@ -40,12 +34,18 @@ describe Turtle do
     end
   end
 
-  describe 'illegal movement' do
+  describe 'movement' do
 
     let(:board) { Board.new }
 
     before do
       board.place turtle, 0, 0
+    end
+
+    it 'can move forward' do
+      turtle.face :east
+      turtle.move_forward
+      turtle.coords.must_equal [0, 1]
     end
 
     it 'cannot move off the board' do
