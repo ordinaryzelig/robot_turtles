@@ -40,12 +40,47 @@ describe Turtle do
     end
   end
 
-  it 'cannot move off the board' do
-    Board.new.place turtle, 0, 0
-    turtle.face :north
-    proc do
-      turtle.move_forward
-    end.must_raise Turtle::TriedToMoveOffBoard
+  describe 'illegal movement' do
+
+    let(:board) { Board.new }
+
+    before do
+      board.place turtle, 0, 0
+    end
+
+    it 'cannot move off the board' do
+      turtle.face :north
+      proc do
+        turtle.move_forward
+      end.must_raise Turtle::TriedToMoveOffBoard
+    end
+
+    def place_east_of_turtle(obj)
+      board.place obj, 0, 1
+    end
+
+    def assert_turtle_bumps_into(obj)
+      ex =
+        proc do
+          turtle.move_forward
+        end.must_raise Turtle::BumpedIntoObject
+      ex.object.must_equal obj
+    end
+
+    it 'cannot move forward if StoneWall in the way' do
+      turtle.face :east
+      wall = StoneWall.new
+      place_east_of_turtle wall
+      assert_turtle_bumps_into wall
+    end
+
+    it 'cannot move forward if IceWall in the way' do
+      turtle.face :east
+      wall = IceWall.new
+      place_east_of_turtle wall
+      assert_turtle_bumps_into wall
+    end
+
   end
 
 end
