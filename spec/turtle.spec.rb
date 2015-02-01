@@ -61,7 +61,7 @@ describe Turtle do
       board.place obj, 0, 1
     end
 
-    def assert_bumped_into(obj)
+    def assert_turtle_bumped_into(obj)
       ex =
         proc do
           turtle.move_forward
@@ -73,14 +73,14 @@ describe Turtle do
       turtle.face :east
       wall = StoneWall.new
       place_east_of_turtle wall
-      assert_bumped_into wall
+      assert_turtle_bumped_into wall
     end
 
     it 'cannot move forward if IceWall in the way' do
       turtle.face :east
       wall = IceWall.new
       place_east_of_turtle wall
-      assert_bumped_into wall
+      assert_turtle_bumped_into wall
     end
 
     it 'can move onto a space with a jewel' do
@@ -109,13 +109,13 @@ describe Turtle do
       it 'cannot push a crate that cannot be moved legally' do
         ice_wall = IceWall.new
         board.place ice_wall, 0, 2
-        assert_bumped_into ice_wall
+        assert_turtle_bumped_into ice_wall
       end
 
       it 'cannot push a crate with another crate behind it' do
         another_crate = Crate.new
         board.place another_crate, 0, 2
-        assert_bumped_into crate
+        assert_turtle_bumped_into crate
       end
 
     end
