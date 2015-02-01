@@ -1,3 +1,6 @@
+require 'matrix'
+require 'delegate'
+
 # coords are row, col.
 # 0,0 is top left
 class Board < SimpleDelegator

@@ -15,9 +15,6 @@ autoload :Wall,      'wall'
 module StopsLaser
 end
 
-require 'matrix'
-require 'delegate'
-
 # Scenario
 #   setup instructions
 
