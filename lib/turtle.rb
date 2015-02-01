@@ -1,6 +1,7 @@
 class Turtle
 
   include Tile
+  include Moveable
 
   #   turns left
   #   turns right
@@ -19,14 +20,8 @@ class Turtle
   end
 
   def move_forward
-    if about_to_move_off_board?
-      raise TriedToMoveOffBoard.new(coords, @facing)
-    elsif about_to_bump_into_stone_wall? || about_to_bump_into_ice_wall?
-      raise BumpedIntoObject.new(space_ahead.find(Wall))
-    end
-    next_space     = space_ahead
-    space.remove   self
-    next_space.add self
+    move_crate_ahead if crate_ahead
+    move(@facing)
   end
 
   def face(direction)
@@ -69,33 +64,22 @@ private
     space.space_to_the(@facing)
   end
 
-  class IllegalMovement < StandardError
+  def crate_ahead
+    space_ahead.find(Crate)
   end
 
-  class TriedToMoveOffBoard < IllegalMovement
-    def initialize(current_coords, attempted_direction)
-      super "Turtle at #{current_coords.inspect} tried to move #{attempted_direction.inspect}, which is off the board"
+  def move_crate_ahead
+    begin
+      crate_ahead.move(@facing) if crate_ahead
+    rescue BumpedIntoObject => ex
+      # Crate ahead bumped into another crate.
+      # We want to raise the exception for the crate ahead.
+      if ex.object.is_a? Crate
+        raise BumpedIntoObject.new(crate_ahead)
+      else
+        raise
+      end
     end
-  end
-
-  class BumpedIntoObject < IllegalMovement
-    attr_reader :object
-    def initialize(object)
-      @object = object
-      super "Turtle bumped into #{object.class} at #{object.coords.inspect}"
-    end
-  end
-
-  def about_to_move_off_board?
-    space_ahead.off_board?
-  end
-
-  def about_to_bump_into_stone_wall?
-    space_ahead.contains?(StoneWall)
-  end
-
-  def about_to_bump_into_ice_wall?
-    ice_wall = space_ahead.find(IceWall) and !ice_wall.melted
   end
 
 end

@@ -6,4 +6,8 @@ module Tile
     space.coords
   end
 
+  def inspect
+    "<#{self.class} coords=#{coords.inspect}>"
+  end
+
 end
