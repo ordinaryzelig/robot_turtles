@@ -1,0 +1,2 @@
+class MoveForward < Card
+end

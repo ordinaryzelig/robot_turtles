@@ -1,0 +1,2 @@
+class TurnLeft < Card
+end

@@ -24,12 +24,12 @@ describe Turtle do
   it 'can turn' do
     turtle.face(:north)
     %i[east south west north].each do |expected_dir|
-      turtle.turn_right
+      turtle.TurnRight
       turtle.faces?(expected_dir).must_equal true
     end
 
     %i[west south east north].each do |expected_dir|
-      turtle.turn_left
+      turtle.TurnLeft
       turtle.faces?(expected_dir).must_equal true
     end
   end
@@ -45,7 +45,7 @@ describe Turtle do
     it 'can move forward, leaving the previous space' do
       old_space = turtle.space
       turtle.face :east
-      turtle.move_forward
+      turtle.MoveForward
       turtle.coords.must_equal [0, 1]
       old_space.content.must_be_empty
     end
@@ -53,7 +53,7 @@ describe Turtle do
     it 'cannot move off the board' do
       turtle.face :north
       proc do
-        turtle.move_forward
+        turtle.MoveForward
       end.must_raise Turtle::TriedToMoveOffBoard
     end
 
@@ -64,7 +64,7 @@ describe Turtle do
     def assert_turtle_bumped_into(obj)
       ex =
         proc do
-          turtle.move_forward
+          turtle.MoveForward
         end.must_raise Moveable::BumpedIntoObject
       ex.object.must_equal obj
     end
@@ -87,7 +87,7 @@ describe Turtle do
       turtle.face :east
       jewel = Jewel.new
       place_east_of_turtle jewel
-      turtle.move_forward
+      turtle.MoveForward
       turtle.must_be :on_jewel?
     end
 
@@ -101,7 +101,7 @@ describe Turtle do
       end
 
       it 'can push a crate that can be legally pushed' do
-        turtle.move_forward
+        turtle.MoveForward
         turtle.coords.must_equal [0, 1]
         crate.coords.must_equal [0, 2]
       end

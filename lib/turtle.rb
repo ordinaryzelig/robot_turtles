@@ -1,13 +1,6 @@
 class Turtle < Tile
 
   include Moveable
-
-  #   turns left
-  #   turns right
-  #   shoots laser
-  #     laser can travel over spaces where there is no object in its way
-  #     melts first ice it comes into contact with
-
   include StopsLaser
 
   attr_reader :color
@@ -18,7 +11,7 @@ class Turtle < Tile
     @facing = facing
   end
 
-  def move_forward
+  def MoveForward
     move_crate_ahead if crate_ahead
     move(@facing)
   end
@@ -31,7 +24,7 @@ class Turtle < Tile
     @facing == direction
   end
 
-  def turn_right
+  def TurnRight
     new_dir =
       case @facing
       when :north then :east
@@ -42,7 +35,7 @@ class Turtle < Tile
     face new_dir
   end
 
-  def turn_left
+  def TurnLeft
     new_dir =
       case @facing
       when :north then :west
