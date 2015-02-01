@@ -1,6 +1,5 @@
-class IceWall
+class IceWall < Wall
 
-  include Wall
   include StopsLaser
 
   attr_reader :melted

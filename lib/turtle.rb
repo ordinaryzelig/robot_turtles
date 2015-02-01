@@ -1,6 +1,5 @@
-class Turtle
+class Turtle < Tile
 
-  include Tile
   include Moveable
 
   #   turns left

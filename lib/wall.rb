@@ -1,5 +1,2 @@
-module Wall
-
-  include Tile
-
+class Wall < Tile
 end

@@ -1,6 +1,5 @@
-class Jewel
+class Jewel < Tile
 
-  include Tile
   include StopsLaser
 
 end

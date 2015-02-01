@@ -1,6 +1,5 @@
-class StoneWall
+class StoneWall < Wall
 
-  include Wall
   include StopsLaser
 
 end

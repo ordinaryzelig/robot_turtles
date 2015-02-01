@@ -1,4 +1,4 @@
-module Tile
+class Tile
 
   attr_accessor :space
 

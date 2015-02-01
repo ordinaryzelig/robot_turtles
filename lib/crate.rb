@@ -1,6 +1,5 @@
-class Crate
+class Crate < Tile
 
-  include Tile
   include Moveable
   include StopsLaser
 
