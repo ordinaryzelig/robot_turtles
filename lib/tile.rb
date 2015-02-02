@@ -10,4 +10,8 @@ class Tile
     "<#{self.class} coords=#{coords.inspect}>"
   end
 
+  def stops_laser?
+    true
+  end
+
 end

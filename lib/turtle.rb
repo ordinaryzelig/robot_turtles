@@ -1,7 +1,6 @@
 class Turtle < Tile
 
   include Moveable
-  include StopsLaser
 
   attr_reader :color
   attr_reader :facing
@@ -11,17 +10,24 @@ class Turtle < Tile
     @facing = facing
   end
 
-  def MoveForward
-    move_crate_ahead if crate_ahead
-    move(@facing)
-  end
-
   def face(direction)
     @facing = direction
   end
 
   def faces?(direction)
     @facing == direction
+  end
+
+  def on_jewel?
+    space.contains?(Jewel)
+  end
+
+  ##############
+  # Card Methods
+
+  def MoveForward
+    move_crate_ahead if crate_ahead
+    move(@facing)
   end
 
   def TurnRight
@@ -46,8 +52,9 @@ class Turtle < Tile
     face new_dir
   end
 
-  def on_jewel?
-    space.contains?(Jewel)
+  def ShootLaser
+    laser_shot = LaserShot.new(@facing, space_ahead)
+    laser_shot.fire
   end
 
 private

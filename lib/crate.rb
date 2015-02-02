@@ -1,7 +1,6 @@
 class Crate < Tile
 
   include Moveable
-  include StopsLaser
 
   def move(direction)
     if crate_ahead = space_to_the(direction).find(Crate)

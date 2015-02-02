@@ -1,24 +1,22 @@
 require 'bundler/setup'
 Bundler.require
 
-autoload :Board,       'board'
-autoload :Card,        'card'
-autoload :Crate,       'crate'
-autoload :IceWall,     'ice_wall'
-autoload :Jewel,       'jewel'
-autoload :Moveable,    'moveable'
-autoload :MoveForward, 'cards/move_forward'
-autoload :Program,     'program'
-autoload :Space,       'space'
-autoload :StoneWall,   'stone_wall'
-autoload :TurnLeft,    'cards/turn_left'
-autoload :TurnRight,   'cards/turn_right'
-autoload :Turtle,      'turtle'
-autoload :Tile,        'tile'
-autoload :Wall,        'wall'
-
-module StopsLaser
-end
+autoload :Board,           'board'
+autoload :Card,            'card'
+autoload :Crate,           'crate'
+autoload :IceWall,         'ice_wall'
+autoload :Jewel,           'jewel'
+autoload :LaserShot,       'laser_shot'
+autoload :Moveable,        'moveable'
+autoload :MoveForward,     'cards/move_forward'
+autoload :Program,         'program'
+autoload :Space,           'space'
+autoload :StoneWall,       'stone_wall'
+autoload :TurnLeft,        'cards/turn_left'
+autoload :TurnRight,       'cards/turn_right'
+autoload :Turtle,          'turtle'
+autoload :Tile,            'tile'
+autoload :Wall,            'wall'
 
 # Scenario
 #   setup instructions

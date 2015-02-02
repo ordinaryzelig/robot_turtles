@@ -1,7 +1,5 @@
 class IceWall < Wall
 
-  include StopsLaser
-
   attr_reader :melted
 
   def initialize
@@ -10,6 +8,10 @@ class IceWall < Wall
 
   def melt
     @melted = true
+  end
+
+  def stops_laser?
+    !melted
   end
 
 end
