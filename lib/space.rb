@@ -2,26 +2,26 @@ class Space
 
   attr_reader :row
   attr_reader :col
-  attr_reader :content
+  attr_reader :tiles
   attr_writer :board
 
   def initialize(row, col)
     @row     = row
     @col     = col
-    @content = []
+    @tiles = []
   end
 
   def free?
-    content.empty? || has_melted_ice_wall?
+    tiles.empty? || has_melted_ice_wall?
   end
 
   def add(thing)
-    @content << thing
+    @tiles << thing
     thing.space = self
   end
 
   def remove(thing)
-    @content.delete thing
+    @tiles.delete thing
     thing.space = nil
   end
 
@@ -30,7 +30,7 @@ class Space
   end
 
   def find(type)
-    content.find do |obj|
+    tiles.find do |obj|
       obj.is_a? type
     end
   end

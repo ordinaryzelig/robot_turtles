@@ -24,7 +24,7 @@ class LaserShot
 private
 
   def resolve_current_space
-    shot_obj = @current_space.content.find(&:stops_laser?)
+    shot_obj = @current_space.tiles.find(&:stops_laser?)
     shot_obj.melt if shot_obj.is_a?(IceWall) && !shot_obj.melted
     shot_obj
   end

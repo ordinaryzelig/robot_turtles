@@ -15,7 +15,7 @@ describe Board do
   it 'can place a tile on a space' do
     wall = StoneWall.new
     board.place wall, 0, 0
-    tile = board.element(0, 0).content.first
+    tile = board.element(0, 0).tiles.first
     tile.must_equal wall
     tile.coords.must_equal [0, 0]
   end

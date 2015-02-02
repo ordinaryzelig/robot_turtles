@@ -2,11 +2,11 @@ require_relative 'helper'
 
 describe Space do
 
-  it 'can have content put in, and content will be linked to the space' do
+  it 'can have tiles put in, and tiles will be linked to the space' do
     space = Space.new(0, 0)
     turtle = Turtle.new(:blue, :north)
     space.add turtle
-    space.content.must_include turtle
+    space.tiles.must_include turtle
     turtle.space.must_equal space
   end
 
@@ -16,7 +16,7 @@ describe Space do
       Space.new(0, 0).must_be :free?
     end
 
-    it 'returns false if content would block movement' do
+    it 'returns false if tiles would block movement' do
       space = Space.new(0, 0)
       space.add StoneWall.new
       space.wont_be :free?
@@ -50,7 +50,7 @@ describe Space do
     end
   end
 
-  it 'can find an object in its content matching a given type' do
+  it 'can find an object in its tiles matching a given type' do
     space = Space.new(0, 0)
     ice_wall = IceWall.new
     space.add ice_wall

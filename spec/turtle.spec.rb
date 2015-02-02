@@ -47,7 +47,7 @@ describe Turtle do
       turtle.face :east
       turtle.MoveForward
       turtle.coords.must_equal [0, 1]
-      old_space.content.must_be_empty
+      old_space.tiles.must_be_empty
     end
 
     it 'cannot move off the board' do
