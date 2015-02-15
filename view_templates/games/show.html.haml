@@ -2,4 +2,4 @@
   - board.row_count.times do |r|
     %tr
       - board.column_count.times do |c|
-        %td.space= board.space_at(r, c)
+        %td.space= render partial: 'space', locals: {space: board.space_at(r, c)}

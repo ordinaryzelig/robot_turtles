@@ -3,3 +3,30 @@ table.board
     $space_size: 100px
     width: $space_size
     height: $space_size
+
+@mixin rotate($deg)
+  -webkit-trasform:  rotate(#{$deg}deg)
+  -moz-trasform:     rotate(#{$deg}deg)
+  -ms-trasform:      rotate(#{$deg}deg)
+  transform:         rotate(#{$deg}deg)
+
+.turtle
+  font-size: 90px
+  text-align: center
+  &.color-blue
+    color: blue
+  &.color-red
+    color: red
+  &.color-purple
+    color: purple
+  &.color-brown
+    color: brown
+.tile
+  &.facing-north
+    @include rotate(270)
+  &.facing-east
+    @include rotate(0)
+  &.facing-south
+    @include rotate(90)
+  &.facing-west
+    @include rotate(180)
