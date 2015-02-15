@@ -1,5 +1,4 @@
-$LOAD_PATH.unshift __dir__ + '/../lib'
-
-require 'robot_turtles'
-
+require 'bundler/setup'
 Bundler.require :test
+
+require_relative '../load_path'
