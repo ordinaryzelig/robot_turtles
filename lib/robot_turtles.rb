@@ -4,6 +4,7 @@ Bundler.require
 autoload :Board,           'board'
 autoload :Card,            'card'
 autoload :Crate,           'crate'
+autoload :FunctionFrog,    'cards/function_frog'
 autoload :IceWall,         'ice_wall'
 autoload :Jewel,           'jewel'
 autoload :LaserShot,       'laser_shot'

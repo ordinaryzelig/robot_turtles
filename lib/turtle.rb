@@ -2,8 +2,9 @@ class Turtle < Tile
 
   include Moveable
 
-  attr_reader :color
-  attr_reader :facing
+  attr_reader   :color
+  attr_reader   :facing
+  attr_accessor :function_frog_cards
 
   def initialize(color, facing)
     @color  = color
@@ -55,6 +56,12 @@ class Turtle < Tile
   def ShootLaser
     laser_shot = LaserShot.new(@facing, space_ahead)
     laser_shot.fire
+  end
+
+  def FunctionFrog
+    function_frog_cards.each do |card|
+      card.play self
+    end
   end
 
 private
