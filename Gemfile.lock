@@ -2,13 +2,41 @@ GEM
   remote: https://rubygems.org/
   specs:
     awesome_print (1.6.1)
+    haml (4.0.5)
+      tilt
+    http_router (0.11.1)
+      rack (>= 1.0.0)
+      url_mount (~> 0.2.1)
+    lotus-controller (0.3.2)
+      lotus-utils (~> 0.3, >= 0.3.4)
+      lotus-validations (~> 0.2, >= 0.2.4)
+      rack (~> 1.5)
+    lotus-router (0.2.1)
+      http_router (~> 0.11)
+      lotus-utils (~> 0.3, >= 0.3.2)
+    lotus-utils (0.3.4)
+    lotus-validations (0.2.4)
+      lotus-utils (~> 0.3, >= 0.3.4)
+    lotus-view (0.3.0)
+      lotus-utils (~> 0.3, >= 0.3.2)
+      tilt (~> 2.0, >= 2.0.1)
     minitest (5.5.1)
+    rack (1.6.0)
     rake (10.4.2)
+    sass (3.4.11)
+    tilt (2.0.1)
+    url_mount (0.2.1)
+      rack
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   awesome_print
+  haml
+  lotus-controller
+  lotus-router
+  lotus-view
   minitest
   rake
+  sass
