@@ -25,8 +25,16 @@ module Games
 
       def call(params)
         @board = Board.new
+
         @turtle = Turtle.new(:blue, :east)
         @board.place @turtle, 0, 0
+
+        @board.place IceWall.new,             0, 1
+        @board.place Crate.new,               0, 2
+        @board.place IceWall.new.tap(&:melt), 0, 3
+        @board.place StoneWall.new,           0, 4
+        @board.place Jewel.new,               0, 5
+
         self.body = Games::Show.render(format: :html, **exposures)
       end
 

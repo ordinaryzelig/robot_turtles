@@ -10,18 +10,9 @@ table.board
   -ms-trasform:      rotate(#{$deg}deg)
   transform:         rotate(#{$deg}deg)
 
-.turtle
+.tile
   font-size: 90px
   text-align: center
-  &.color-blue
-    color: blue
-  &.color-red
-    color: red
-  &.color-purple
-    color: purple
-  &.color-brown
-    color: brown
-.tile
   &.facing-north
     @include rotate(270)
   &.facing-east
@@ -30,3 +21,12 @@ table.board
     @include rotate(90)
   &.facing-west
     @include rotate(180)
+.turtle
+  &.color-blue
+    color: blue
+  &.color-red
+    color: red
+  &.color-purple
+    color: purple
+  &.color-brown
+    color: brown
