@@ -14,4 +14,8 @@ class IceWall < Wall
     !melted
   end
 
+  def to_map
+    melted ? 'P' : 'I'
+  end
+
 end

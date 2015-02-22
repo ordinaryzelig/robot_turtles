@@ -1,5 +1,30 @@
 class Turtle < Tile
 
+  COLORS = %i[
+    blue
+    red
+    purple
+    brown
+  ].freeze
+
+  DIRECTIONS = {
+    'N' => :north,
+    'E' => :east,
+    'S' => :south,
+    'W' => :west,
+  }.freeze
+
+  class << self
+
+    def string(string)
+      new(
+        COLORS.fetch(Integer(string[1])),
+        DIRECTIONS.fetch(string[2])
+      )
+    end
+
+  end
+
   include Moveable
 
   attr_reader   :color
@@ -21,6 +46,10 @@ class Turtle < Tile
 
   def on_jewel?
     space.contains?(Jewel)
+  end
+
+  def to_map
+    "T#{COLORS.index(color)}#{facing.to_s[0].upcase}"
   end
 
   ##############

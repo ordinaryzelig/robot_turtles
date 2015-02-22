@@ -85,7 +85,7 @@ describe Turtle do
 
     it 'can move onto a space with a jewel' do
       turtle.face :east
-      jewel = Jewel.new
+      jewel = Jewel.new(:blue)
       place_east_of_turtle jewel
       turtle.MoveForward
       turtle.must_be :on_jewel?
