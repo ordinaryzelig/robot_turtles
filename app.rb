@@ -33,7 +33,7 @@ module Games
         @board.place Crate.new,               0, 2
         @board.place IceWall.new.tap(&:melt), 0, 3
         @board.place StoneWall.new,           0, 4
-        @board.place Jewel.new,               0, 5
+        @board.place Jewel.new(:blue),        0, 5
 
         self.body = Games::Show.render(format: :html, **exposures)
       end
