@@ -8,6 +8,8 @@ require 'lotus-controller'
 require 'lotus-view'
 require 'lotus-router'
 
+require 'awesome_print'
+
 Lotus::View.configure do
   root 'view_templates'
 end
@@ -23,16 +25,9 @@ module Games
       expose :board
 
       def call(params)
-        @board = Board.new
-
-        @turtle = Turtle.new(:blue, :east)
-        @board.place @turtle, 0, 0
-
-        @board.place IceWall.new,             0, 1
-        @board.place Crate.new,               0, 2
-        @board.place IceWall.new.tap(&:melt), 0, 3
-        @board.place StoneWall.new,           0, 4
-        @board.place Jewel.new(:blue),        0, 5
+        @exposures = nil # Bug? https://github.com/lotus/controller/issues/90
+        @map   = Map.new(params['map'] || '')
+        @board = @map.board
 
         self.body = Games::Show.render(format: :html, **exposures)
       end

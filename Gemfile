@@ -9,7 +9,8 @@ gem 'lotus-view'
 gem 'haml'
 gem 'sass'
 
+gem 'awesome_print'
+
 group :test do
   gem 'minitest', require: 'minitest/autorun'
-  gem 'awesome_print'
 end
