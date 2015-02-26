@@ -21,7 +21,6 @@ module Games
       include Lotus::Action
 
       expose :board
-      expose :turtle
 
       def call(params)
         @board = Board.new
