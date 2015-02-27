@@ -4,9 +4,9 @@ require 'models'
 require 'haml'
 require 'sass'
 
+require 'lotus-router'
 require 'lotus-controller'
 require 'lotus-view'
-require 'lotus-router'
 
 require 'awesome_print'
 
@@ -17,27 +17,30 @@ Lotus::View.load!
 
 module Games
 
-  module Actions
-    class Show
+  class Show
+
+    include Lotus::View
+    layout :application
+
+    def self.call(params)
+      Action.new.call(params)
+    end
+
+    class Action
 
       include Lotus::Action
 
       expose :board
 
       def call(params)
-        @exposures = nil # Bug? https://github.com/lotus/controller/issues/90
         @map   = Map.new(params['map'] || '')
         @board = @map.board
 
-        self.body = Games::Show.render(format: :html, **exposures)
+        self.body = Show.render(format: :html, **exposures)
       end
 
     end
-  end
 
-  class Show
-    include Lotus::View
-    layout :application
   end
 
 end
@@ -62,6 +65,6 @@ end
 
 RobotTurtles =
   Lotus::Router.new do
-    get '/', to: Games::Actions::Show
+    get '/', to: Games::Show
     get '/application.css', to: Stylesheets
   end
